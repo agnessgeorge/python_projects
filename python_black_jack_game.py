@@ -23,22 +23,52 @@ class Deck:
     
     def __init__(self):
         self.deck = []  # start with an empty list
+        #all_cards = ""
         for suit in suits:
             for rank in ranks:
                 newCard = Card(suit, rank, values[rank])
-                t = newCard.suit + newCard.rank + str(newCard.value)
-                (self.deck).append(t)
+                t = newCard.rank +" "+ str(newCard.value) +" "+ newCard.suit 
+                self.deck.append(t)
+                #all_cards = all_cards +
+
     
     def __str__(self):
-        return self.deck[0]
+        for i in range(len(self.deck)):
+            print (self.deck[i])
 
 
     def shuffle(self):
-        random.shuffle(self.deck)
-        
+        return random.choice(self.deck)
+
+    #..............................   
     def deal(self):
         pass
 
+class Hand(Deck):
+    def __init__(self):
+        self.cards = []  # start with an empty list as we did in the Deck class
+        self.value = 0   # start with zero value
+        self.aces = 0    # add an attribute to keep track of aces
+    
+    def add_card(self,card):
+        self.card = card
+        if self.card.rank == 'Ace':
+            self.aces += 1
+        self.cards.append(self.card)
+        self.value += self.card.value
+    
+    def __str__(self) -> str:
+        return "current value of cards in-hand: "+ self.value 
+    
+    #....................................
+    def adjust_for_ace(self):
+        pass
 
-test_deck = Deck()
-print(test_deck)
+
+
+      
+deck1 = Deck()
+# print(deck1)
+hand1 = Hand()
+hand1.add_card(deck1.shuffle)
+#print(hand1)
